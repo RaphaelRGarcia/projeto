@@ -2,6 +2,8 @@ package com.projeto.projeto;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.projeto.projeto.exception.UnsupportedMathOperationException;
+
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +19,7 @@ public class MathController {
     @RequestMapping(value = "/sum/{numberOne}/{numberTwo}",method = RequestMethod.GET)
     public Double greeting(@PathVariable(value = "numberOne") String numberOne,@PathVariable(value="numberTwo")String numberTwo) throws Exception{
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
-            throw new  Exception();
+            throw new UnsupportedMathOperationException("Please set a numeric value");
         }
         return convertNumber(numberOne)+convertNumber(numberTwo);
     }
