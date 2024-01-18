@@ -17,11 +17,34 @@ public class MathController {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping(value = "/sum/{numberOne}/{numberTwo}",method = RequestMethod.GET)
-    public Double greeting(@PathVariable(value = "numberOne") String numberOne,@PathVariable(value="numberTwo")String numberTwo) throws Exception{
+    public Double sum(@PathVariable(value = "numberOne") String numberOne,@PathVariable(value="numberTwo")String numberTwo) throws Exception{
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
             throw new UnsupportedMathOperationException("Please set a numeric value");
         }
         return convertNumber(numberOne)+convertNumber(numberTwo);
+    }
+    @RequestMapping(value = "/div/{numberOne}/{numberTwo}",method=RequestMethod.GET)
+    public Double div(@PathVariable(value = "numberOne") String numberOne, @PathVariable(value = "numberTwo") String numberTwo) {
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
+            throw new UnsupportedMathOperationException("Please set a numeric value");
+        }
+        return convertNumber(numberOne)/convertNumber(numberTwo);
+    }
+    
+    @RequestMapping(value = "/sub/{numberOne}/{numberTwo}",method=RequestMethod.GET)
+    public Double sub(@PathVariable(value = "numberOne") String numberOne, @PathVariable(value = "numberTwo") String numberTwo) {
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
+            throw new UnsupportedMathOperationException("Please set a numeric value");
+        }
+        return convertNumber(numberOne)-convertNumber(numberTwo);
+    }
+    
+    @RequestMapping(value = "/mult/{numberOne}/{numberTwo}",method=RequestMethod.GET)
+    public Double mult(@PathVariable(value = "numberOne") String numberOne, @PathVariable(value = "numberTwo") String numberTwo) {
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
+            throw new UnsupportedMathOperationException("Please set a numeric value");
+        }
+        return convertNumber(numberOne)*convertNumber(numberTwo);
     }
 
     private Double convertNumber(String strNumber) {
