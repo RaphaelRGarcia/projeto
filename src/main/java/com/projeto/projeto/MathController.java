@@ -46,6 +46,22 @@ public class MathController {
         }
         return convertNumber(numberOne)*convertNumber(numberTwo);
     }
+    
+    @RequestMapping(value = "/avg/{numberOne}/{numberTwo}",method=RequestMethod.GET)
+    public Double avg(@PathVariable(value = "numberOne") String numberOne, @PathVariable(value = "numberTwo") String numberTwo) {
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
+            throw new UnsupportedMathOperationException("Please set a numeric value");
+        }
+        return (convertNumber(numberOne)+convertNumber(numberTwo))/2;
+    }
+    
+    @RequestMapping(value = "/sqrt/{numberOne}",method=RequestMethod.GET)
+    public Double sqrt(@PathVariable(value = "numberOne") String numberOne) {
+        if(!isNumeric(numberOne)){
+            throw new UnsupportedMathOperationException("Please set a numeric value");
+        }
+        return Math.sqrt(convertNumber(numberOne));
+    }
 
     private Double convertNumber(String strNumber) {
         if (strNumber == null) return 0D;
