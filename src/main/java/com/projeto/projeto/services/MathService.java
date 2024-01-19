@@ -1,17 +1,16 @@
 package com.projeto.projeto.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.projeto.projeto.exception.UnsupportedMathOperationException;
 import com.projeto.projeto.tools.MathTools;
 
+@Service
 public class MathService {
     
-    private final MathTools mathTools;
-
-
-    public MathService() {
-        this.mathTools = new MathTools();
-    }
-
+    @Autowired
+    private MathTools mathTools;
 
     public Double sum(String numberOne,String numberTwo) throws Exception{
         if (!mathTools.isNumeric(numberOne) || !mathTools.isNumeric(numberTwo)) {

@@ -1,5 +1,8 @@
 package com.projeto.projeto.tools;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class MathTools {
 
     public MathTools() {
